@@ -9,7 +9,7 @@ function term_handler {
 }
 
 function fuse_unmount {
-  fusermount -u -z /mnt
+  fusermount -u -z "$OUT"
 }
 
 if [ -z "${FILESYSTEMS}" ]; then
@@ -20,7 +20,7 @@ trap term_handler SIGINT SIGTERM
 
 while true
 do
-  /usr/bin/mergerfs -f -o $OPTIONS "$FILESYSTEMS" /mnt & wait ${!}
+  /usr/bin/mergerfs -f -o $OPTIONS "$FILESYSTEMS" "$OUT" & wait ${!}
   echo "mergerfs crashed at: $(date +%Y.%m.%d-%T)"
   fuse_unmount
 done
