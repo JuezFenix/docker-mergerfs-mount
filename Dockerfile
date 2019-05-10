@@ -3,6 +3,7 @@ MAINTAINER ErAzOr2k
 
 ENV OPTIONS="defaults,sync_read,allow_other,category.action=all,category.create=ff"
 ENV FILESYSTEMS=
+ENV OUT=
 
 RUN apt-get update \
   && apt-get install -y \
